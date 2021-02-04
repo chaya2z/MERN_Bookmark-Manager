@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  client:
+    image: app-client
+    container_name: "client"
+    build: ./client/
+    ports:
+      - 8888:3000
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+    links:
+      - server
+    networks:
+      - app-network
+
+  server:
+    image: app-server
+    container_name: "server"
+    build: ./server/
+    ports:
+      - 8080:3000
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - ./server:/server
+      - /server/node_modules
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:latest
+    container_name: "mongo"
+    volumes:
+      - ./data/:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - app-network
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+    - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
