@@ -25,9 +25,5 @@ mongoose.connect("mongodb://mongo:27017/testdb", {
     useNewUrlParser: "true",
     useUnifiedTopology: true
 })
-mongoose.connection.on("error", err => {
-    console.log("err", err)
-})
-mongoose.connection.on("connected", (err, res) => {
-    console.log("mongoose is connected")
-})
+    .then(() => console.log("mongoose is connected"))
+    .catch((e) => console.log(e));
