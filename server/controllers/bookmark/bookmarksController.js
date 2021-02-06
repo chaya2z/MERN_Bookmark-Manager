@@ -10,6 +10,7 @@ exports.all_bookmarks = function(req, res) {
 };
 
 exports.create_bookmark = function(req, res) {
+    res.header('Access-Control-Allow-Origin', '*');
     const new_bookmark = new Bookmark(req.body);
     new_bookmark.save(function(err, bookmark) {
         if (err) res.send(err);
@@ -18,6 +19,7 @@ exports.create_bookmark = function(req, res) {
 };
 
 exports.load_bookmark = function(req, res) {
+    res.header('Access-Control-Allow-Origin', '*');
     Bookmark.findById(req.params.bookmarkId, function(err, bookmark) {
         if (err) res.send(err);
         res.json(bookmark);
