@@ -1,14 +1,23 @@
 import React, {useEffect, useState} from 'react';
 
-import { getBookmarks, postBookmarks } from "../api/Bookmark";
+import {getBookmarks, postBookmark, putBookmark, deleteBookmark} from "../api/Bookmark";
 
 const Home: React.FC = () => {
-    const data = {
-        title: "google",
-        url: "www.google.com"
+    // const data = {
+    //     title: "google",
+    //     url: "www.google.com"
+    // }
+    //
+    // postBookmarks(data);
+
+    const putData = {
+        title: "yahoo",
+        url: "www.yahoo.co.jp"
     }
 
-    postBookmarks(data);
+    putBookmark(putData);
+
+    deleteBookmark();
 
     const [bookmarkData, setBookmarkData] = useState<any>(null);
 
