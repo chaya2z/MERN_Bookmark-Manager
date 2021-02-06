@@ -1,8 +1,15 @@
 import React, {useEffect, useState} from 'react';
 
-import { getBookmarks } from "../api/Bookmark";
+import { getBookmarks, postBookmarks } from "../api/Bookmark";
 
 const Home: React.FC = () => {
+    const data = {
+        title: "google",
+        url: "www.google.com"
+    }
+
+    postBookmarks(data);
+
     const [bookmarkData, setBookmarkData] = useState<any>(null);
 
     useEffect(() => {
