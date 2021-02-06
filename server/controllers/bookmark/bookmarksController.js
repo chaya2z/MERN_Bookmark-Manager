@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Bookmark = mongoose.model("Bookmarks");
 
 exports.all_bookmarks = function(req, res) {
+    res.header('Access-Control-Allow-Origin', '*');
     Bookmark.find({}, function(err, bookmark) {
         if (err) res.send(err);
         res.json(bookmark);
