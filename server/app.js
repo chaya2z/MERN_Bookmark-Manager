@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 
+const Bookmarks = require('./models/bookmarks');
+
 // DB connection
 mongoose.connect("mongodb://mongo:27017/bookmark", {
     useNewUrlParser: true,
