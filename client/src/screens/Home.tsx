@@ -1,13 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
 
-const getBookmarks = async () => {
-    try {
-        return await axios.get('http://192.168.11.55:8080/api/bookmarks');
-    } catch (e) {
-        console.log(e);
-    }
-}
+import { getBookmarks } from "../api/Bookmark";
 
 const Home: React.FC = () => {
     const [bookmarkData, setBookmarkData] = useState<any>(null);
