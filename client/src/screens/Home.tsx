@@ -1,24 +1,9 @@
 import React, {useEffect, useState} from 'react';
 
 import {getBookmarks, postBookmark, putBookmark, deleteBookmark} from "../api/Bookmark";
+import CommonAppBar from "../components/header/Header";
 
 const Home: React.FC = () => {
-    // const data = {
-    //     title: "google",
-    //     url: "www.google.com"
-    // }
-    //
-    // postBookmarks(data);
-
-    const putData = {
-        title: "yahoo",
-        url: "www.yahoo.co.jp"
-    }
-
-    putBookmark(putData);
-
-    deleteBookmark();
-
     const [bookmarkData, setBookmarkData] = useState<any>(null);
 
     useEffect(() => {
@@ -39,6 +24,7 @@ const Home: React.FC = () => {
 
     return (
         <div>
+            <CommonAppBar />
             <h1>Home</h1>
             <p>Hello React</p>
             <div>
